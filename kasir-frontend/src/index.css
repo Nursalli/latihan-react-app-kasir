@@ -9,6 +9,15 @@ body {
   background-color: #22668A !important;
 }
 
+.category-aktif {
+  background-color: #22668A;
+  color: white;
+}
+
+.btn-primary{
+  background-color: #22668A !important;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
