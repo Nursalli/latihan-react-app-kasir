@@ -4,7 +4,7 @@ import { numberWithCommas } from "../Utils/Utils";
 
 function Menus({menus, masukKeranjang}) {
   return (
-    <Col md={4} xs={6} className="mb-4">
+    <Col md={4} xs={6} className="mb-4" style={{ cursor: 'pointer' }}>
       <Card className="shadow" onClick={() => masukKeranjang(menus)}>
         <Card.Img variant="top" src={"assets/images/"+ menus.category.nama.toString() + "/" + menus.gambar} />
         <Card.Body>

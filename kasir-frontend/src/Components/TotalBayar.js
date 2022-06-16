@@ -24,7 +24,9 @@ export default class TotalBayar extends Component {
     }, 0);
 
     return (
-      <div className="fixed-bottom">
+      <>
+      {/* Website */}
+      <div className="fixed-bottom d-none d-md-block">
         <Row>
           <Col md={{ span: 3, offset: 9 }} className="px-4">
             <p>
@@ -41,6 +43,26 @@ export default class TotalBayar extends Component {
           </Col>
         </Row>
       </div>
+      
+      {/* Mobile */}
+      <div className="d-block d-md-none">
+        <Row>
+          <Col md={{ span: 3, offset: 9 }} className="px-4">
+            <p>
+              Total Bayar:{" "}
+              <strong className="float-end me-2">
+                {numberWithCommas(totalHarga)}
+              </strong>{" "}
+            </p>
+            <div className="d-grid gap-2">
+              <Button variant="primary" className="mt-1 mb-3" size="lg" onClick={ () => this.pesan(totalHarga)}>
+                Bayar
+              </Button>
+            </div>
+          </Col>
+        </Row>
+      </div>
+      </>
     );
   }
 }

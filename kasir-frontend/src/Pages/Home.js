@@ -36,15 +36,24 @@ export default class Home extends Component {
       });
   }
 
-  componentDidUpdate(prevState){
-    if(this.state.keranjangs !== prevState.keranjangs){
-      axios
+  // componentDidUpdate(prevState){
+  //   if(this.state.keranjangs !== prevState.keranjangs){
+  //     axios
+  //     .get(API_URL + "keranjangs")
+  //     .then((res) => {
+  //       const keranjangs = res.data;
+  //       this.setState({ keranjangs });
+  //     });
+  //   }
+  // }
+
+  getUpdateKeranjang = () => {
+    axios
       .get(API_URL + "keranjangs")
       .then((res) => {
         const keranjangs = res.data;
         this.setState({ keranjangs });
       });
-    }
   }
 
   ubahCategory = (value) => {
@@ -69,6 +78,7 @@ export default class Home extends Component {
         }
 
         axios.post(API_URL + "keranjangs", data).then((res) => {
+          this.getUpdateKeranjang()
           swal({
             title: "Sukses Masuk Keranjang!",
             text: value.nama,
@@ -85,6 +95,7 @@ export default class Home extends Component {
         }
 
         axios.put(API_URL + "keranjangs/"+ res.data[0].id, data).then((res) => {
+          this.getUpdateKeranjang()
           swal({
             title: "Sukses Masuk Keranjang!",
             text: data.product.nama,
@@ -108,19 +119,19 @@ export default class Home extends Component {
               pilihCategory={this.state.pilihCategory}
             />
 
-            <Col>
+            <Col className="mt-2">
               <h4>
                 <strong>Daftar Produk</strong>
               </h4>
               <hr />
-              <Row>
+              <Row className="overflow-auto menu">
                 {products.map((m) => (
                   <Menus key={m.id} menus={m} masukKeranjang={this.masukKeranjang} />
                 ))}
               </Row>
             </Col>
 
-            <ListResult keranjangs={keranjangs} />
+            <ListResult keranjangs={keranjangs} getUpdateKeranjang={this.getUpdateKeranjang} />
           </Row>
         </div>
       </div>
